@@ -1,0 +1,14 @@
+{
+  "name": "api",
+  "scripts": {
+    "dev": "bun --watch index.ts"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "postgres": "^3.4.5"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.2.8",
+    "@types/express": "^5.0.1"
+  }
+}
