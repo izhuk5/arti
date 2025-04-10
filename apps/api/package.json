@@ -1,14 +1,19 @@
 {
   "name": "api",
   "scripts": {
-    "dev": "bun --watch index.ts"
+    "dev": "bun --watch index.ts",
+    "drizzle:generate": "drizzle-kit generate",
+    "drizzle:generate-custom": "drizzle-kit generate --custom",
+    "drizzle:migrate": "drizzle-kit migrate"
   },
   "dependencies": {
+    "drizzle-orm": "^0.41.0",
     "express": "^5.1.0",
     "postgres": "^3.4.5"
   },
   "devDependencies": {
     "@types/bun": "^1.2.8",
-    "@types/express": "^5.0.1"
+    "@types/express": "^5.0.1",
+    "drizzle-kit": "^0.30.6"
   }
 }

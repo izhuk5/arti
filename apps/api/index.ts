@@ -1,12 +1,11 @@
+import { db } from "~/drizzle";
+import { users } from "~/drizzle/schemas/users";
 import express from "express";
-import postgres from "postgres";
-
-const client = postgres(process.env.DATABASE_URL!);
 
 const app = express();
 
 app.get("/", async (req, res) => {
-  const result = await client`SELECT * FROM auth.users`;
+  const result = await db.select().from(users);
 
   res.send(result);
 });
