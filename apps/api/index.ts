@@ -1,14 +1,19 @@
-import { db } from "~/drizzle";
-import { users } from "~/drizzle/schemas/users";
+import { toNodeHandler } from "better-auth/node";
 import express from "express";
+import cors from "cors";
+import { auth } from "./auth";
 
 const app = express();
 
-app.get("/", async (req, res) => {
-  const result = await db.select().from(users);
+app.use(express.json());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
-  res.send(result);
-});
+app.all("/api/auth/*splat", toNodeHandler(auth));
 
 app.listen(3005, () => {
   console.log("Server is running on port http://localhost:3005");

@@ -7,12 +7,16 @@
     "drizzle:migrate": "drizzle-kit migrate"
   },
   "dependencies": {
+    "better-auth": "^1.2.7",
+    "cors": "^2.8.5",
     "drizzle-orm": "^0.41.0",
     "express": "^5.1.0",
-    "postgres": "^3.4.5"
+    "postgres": "^3.4.5",
+    "zod": "^3.24.3"
   },
   "devDependencies": {
     "@types/bun": "^1.2.8",
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.1",
     "drizzle-kit": "^0.30.6"
   }
