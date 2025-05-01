@@ -5,7 +5,6 @@ import { auth } from "./auth";
 
 const app = express();
 
-app.use(express.json());
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -13,7 +12,10 @@ app.use(
   })
 );
 
-app.all("/api/auth/*splat", toNodeHandler(auth));
+app.all("/api/auth/*splat", (req, res) => {
+  console.log("req", req);
+  toNodeHandler(auth)(req, res);
+});
 
 app.listen(3005, () => {
   console.log("Server is running on port http://localhost:3005");

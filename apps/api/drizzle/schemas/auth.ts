@@ -1,7 +1,7 @@
-import { pgTable, text, timestamp, boolean } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, boolean, uuid } from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
-  id: text().primaryKey(),
+  id: uuid().primaryKey(),
   name: text().notNull(),
   email: text().notNull().unique(),
   emailVerified: boolean().notNull(),
@@ -11,23 +11,23 @@ export const users = pgTable("users", {
 });
 
 export const sessions = pgTable("sessions", {
-  id: text().primaryKey(),
+  id: uuid().primaryKey(),
   expiresAt: timestamp({ withTimezone: true }).notNull(),
   token: text().notNull().unique(),
   createdAt: timestamp({ withTimezone: true }).notNull(),
   updatedAt: timestamp({ withTimezone: true }).notNull(),
   ipAddress: text(),
   userAgent: text(),
-  userId: text()
+  userId: uuid()
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
 });
 
 export const accounts = pgTable("accounts", {
-  id: text().primaryKey(),
+  id: uuid().primaryKey(),
   accountId: text().notNull(),
   providerId: text().notNull(),
-  userId: text()
+  userId: uuid()
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   accessToken: text(),
@@ -42,7 +42,7 @@ export const accounts = pgTable("accounts", {
 });
 
 export const verifications = pgTable("verifications", {
-  id: text().primaryKey(),
+  id: uuid().primaryKey(),
   identifier: text().notNull(),
   value: text().notNull(),
   expiresAt: timestamp({ withTimezone: true }).notNull(),
